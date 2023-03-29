@@ -410,6 +410,7 @@ class _PyTorchGradient(Explainer):
 
         multi_output = False
         outputs = self.model(*self.model_inputs)
+        self.expected_value = outputs.mean(0).cpu().numpy()
         if len(outputs.shape) > 1 and outputs.shape[1] > 1:
             multi_output = True
         self.multi_output = multi_output
