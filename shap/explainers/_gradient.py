@@ -75,6 +75,7 @@ class Gradient(Explainer):
             self.explainer = _TFGradient(model, data, session, batch_size, local_smoothing)
         elif framework == 'pytorch':
             self.explainer = _PyTorchGradient(model, data, batch_size, local_smoothing)
+            self.expected_value = self.explainer.expected_value
 
     def __call__(self, X, nsamples=200):
         """ Return an explanation object for the model applied to X. 
